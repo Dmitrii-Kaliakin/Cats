@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./img/images.png" type="image/png">
+    <link rel="stylesheet" href="./project_cat.css" />
+    <link rel="stylesheet" href="./FAA/css/all.min.css" />
+    <title>CatsBook</title>
+    <script
+      src="https://kit.fontawesome.com/3e2b3d0dcf.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="page">
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="logo"><img  class="logo-img" src="./img/275554901032211.png"> CatsBook</a>
+            <button class="btn btn-three" id="add"><i class="fa fa-plus"></i> Добавить нового кота</button>
+        </div>
+    </header>
+    <main class="main container">
+        <section class="cards">
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            <span class="copyright">©2023 Made by Dmitrii Kaliakin</span>
+
+            <div class="socials">
+                <a class="socials__link" href="#"><i class="fa-brands fa-github socials__icon"></i></a>
+                <a class="socials__link" href="#"><i class="fa-brands fa-vk socials__icon"></i></a>
+                <a class="socials__link" href="#"><i class="fa-brands fa-telegram socials__icon"></i></a>
+            </nav>
+        </div>
+        <img class="footer__img" src="./img/00c909a6654d189d4d49043ec62bff1a4a785274r1-320-320_00.gif" alt="">
+    </footer>
+  <div class="popup popup-add">
+      <div class="popup__container" >
+          <button class="popup__close btn "><i class="fa-solid fa-xmark"></i></button>
+          <h2>Добавить питомца</h2>
+          <form class="form" id="popup-form-add">
+              <div class="form__image"></div>
+              <input type="number" class="form__input" name="id" min="1" required placeholder="id">
+              <input type="number" class="form__input" name="age" placeholder="Возраст">
+              <input type="text" class="form__input" name="name" required placeholder="Имя">
+              <input type="number" class="form__input" name="rate" placeholder="Рейтинг (0-10)" min="0" max="10">
+              <textarea name="description" class="form__input form__textarea" placeholder="Описание"></textarea>
+              <label class="form__checkbox-wrap">
+                  <input type="checkbox" name="favourite" class="form__checkbox" placeholder="">
+                  <span class="form__label">Любимчик</span>  
+                  <span class="form__fake-checkbox"><i class="fa-regular fa-circle-check"></i></span>
+              </label>
+              <input type="url" class="form__input" name="img_link" placeholder="Ссылка на фото">
+              <button type="submit" class="form__btn btn">Добавить котика</button>
+          </form>
+      </div>
+  </div>
+    <template id="card-template">
+    <div class="card">
+      <button class="card__like" aria-label="Поставить лайк">
+        <i class="fa fa-solid fa-heart fa-2x"></i>
+      </button>
+      <div class="cats__box-img">
+        <img
+          src="#"
+          alt="Изображение"
+          class="card__image"
+        />
+        <button class="card__zoom" aria-label="Увеличить фото">
+          <i class="fa fa-magnifying-glass-plus"></i>
+        </button>
+      </div>
+      <div class="cat__inform">
+        <div class="cat__specification">Имя:
+          <b class="cat__name"></b>
+        </div>
+        <div class="cat__specification">Возраст:
+          <b class="cat__age"></b>
+        </div>
+        <div class="cat__specification">Рейтинг:
+          <b class="cat__rate"></b>
+        </div>
+        <div class="cat__specification">Описание:
+          <b class="description"></b>
+          <button class="description__button" aria-label="Раскрыть список">
+            <i class="fa fa-circle-chevron-down"></i>
+          </button>
+        </div>
+      </div>
+      <button class="card__delete" aria-label="Удалить">
+        <i class="fa fa-trash-can"></i>
+      </button>
+    </div>
+  </template>
+  <script src="./cats.js" defer></script>
+  <script src="./api.js" defer></script>
+  <script src="./delete-card.js" defer></script>
+  <script src="./card.js" defer></script>
+  <script src="./popup.js" defer></script>
+  <script src="./like.js" defer></script>
+  <script src="./delete-card.js" defer></script>
+  <script src="./index.js" defer></script>
+  <script src="./FAA/js/all.min.js" defer></script>
+    
+    
+    
+  </body>
+</html>
