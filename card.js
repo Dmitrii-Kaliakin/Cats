@@ -2,6 +2,8 @@ class Card {
   #data;
   #selectorTemplate;
   #element;
+  #handleClickCatImage;
+  #btnOpenImage;
 
   #getTemplate() {
     const template = document
@@ -10,9 +12,10 @@ class Card {
     return template;
   }
 
-  constructor(data, selectorTemplate) {
+  constructor(data, selectorTemplate, handleClickCatImage) {
     this.#data = data;
     this.#selectorTemplate = selectorTemplate;
+    this.#handleClickCatImage = handleClickCatImage;
   }
 
   getElement() {
@@ -22,6 +25,8 @@ class Card {
     const catRateElement = this.#element.querySelector(".cat__rate");
     const cardImageElement = this.#element.querySelector(".card__image");
     const cardLikeElement = this.#element.querySelector(".card__like");
+    const btnOpenImage = this.#element.querySelector(".card__zoom");
+
     catNameElement.textContent = this.#data.name;
     catAgeElement.textContent = this.#data.age;
     catRateElement.textContent = this.#data.rate;
@@ -29,6 +34,10 @@ class Card {
     if (!this.#data.favourite) {
       cardLikeElement.classList.add("card__like-block--hidden");
     }
+
+    btnOpenImage.addEventListener("click", () => {
+      this.#handleClickCatImage(this.#data.img_link);
+    });
     return this.#element;
   }
 }

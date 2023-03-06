@@ -1,6 +1,4 @@
 class Popup {
-  #popupElement;
-  #classPopup;
   #handleEscUp = (evt) => {
     if (evt.key === "Escape") {
       this.close();
@@ -8,24 +6,23 @@ class Popup {
   };
 
   constructor(classPopup) {
-    this.#popupElement = document.querySelector(`.${classPopup}`);
-    this.#classPopup = classPopup;
+    this._popupElement = document.querySelector(`.${classPopup}`);
   }
 
   open() {
-    this.#popupElement.classList.add(`${this.#classPopup}_active`);
+    this._popupElement.classList.add(`popup_active`);
     document.addEventListener("keyup", this.#handleEscUp);
   }
 
   close() {
-    this.#popupElement.classList.remove(`${this.#classPopup}_active`);
+    this._popupElement.classList.remove(`popup_active`);
     document.removeEventListener("keyup", this.#handleEscUp);
   }
 
   setEventListener() {
-    this.#popupElement.addEventListener("mousedown", (evt) => {
+    this._popupElement.addEventListener("mousedown", (evt) => {
       if (
-        evt.target.classList.contains(this.#classPopup) ||
+        evt.target.classList.contains("popup") ||
         !!evt.target.closest(".popup__close")
       ) {
         this.close();

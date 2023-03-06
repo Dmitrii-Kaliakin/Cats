@@ -1,6 +1,7 @@
 const cardsContainer = document.querySelector(".cards");
 const btnOpenPopup = document.querySelector(".btn");
-const popupAdd = new Popup("popup");
+const popupAdd = new Popup("popup-add");
+const popupImage = new PopupWithImage("popup-cat-image");
 const formCatAdd = document.querySelector("#popup-form-add");
 
 function serializeForm(elements) {
@@ -24,10 +25,14 @@ function handleFormAddCat(e) {
   const elementsFormCat = [...formCatAdd.elements];
   const formData = serializeForm(elementsFormCat);
   console.log(formData);
-  const newElement = new Card(formData, "#card-template");
+  const newElement = new Card(formData, "#card-template", handleClickCatImage);
   cardsContainer.prepend(newElement.getElement());
 
   popupAdd.close();
+}
+
+function handleClickCatImage(dataSrc) {
+  popupImage.open(dataSrc);
 }
 
 formCatAdd.addEventListener("submit", handleFormAddCat);
@@ -38,11 +43,11 @@ btnOpenPopup.addEventListener("click", (e) => {
 });
 
 cats.forEach((catData) => {
-  const newElement = new Card(catData, "#card-template");
+  const newElement = new Card(catData, "#card-template", handleClickCatImage);
   cardsContainer.append(newElement.getElement());
 });
 
 popupAdd.setEventListener();
+popupImage.setEventListener();
 
 addLike();
-console.log(cats);

@@ -4,6 +4,7 @@ function addLike() {
 
     let NameElement =
       parentClickLikeElement.parentElement.querySelector(".cat__name");
+    console.log(NameElement);
     if (
       parentClickLikeElement.className === "card__like card__like-block--hidden"
     ) {
