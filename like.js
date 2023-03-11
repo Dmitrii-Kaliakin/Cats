@@ -1,29 +1,27 @@
-function addLike() {
+import { api } from "./api.js";
+import { updateLocalStorage } from "./index.js";
+
+async function updateValueObj(key, value, clickElementId) {
+  const elementObject = await api.getCatById(Number(clickElementId));
+  elementObject[key] = value;
+  await api.updateCatById(clickElementId, elementObject);
+  updateLocalStorage(elementObject, { type: "EDIT_CAT" });
+}
+
+export function addLike() {
   document.addEventListener("click", function (e) {
-    let parentClickLikeElement = e.target.parentElement.parentElement;
+    const clickElement = e.target.parentElement;
 
-    let NameElement =
-      parentClickLikeElement.parentElement.querySelector(".cat__name");
-    console.log(NameElement);
-    if (
-      parentClickLikeElement.className === "card__like card__like-block--hidden"
-    ) {
-      parentClickLikeElement.classList.remove("card__like-block--hidden");
-
-      cats.forEach((catData) => {
-        if (catData.name === NameElement.innerText) {
-          catData.favourite = true;
-          //   console.log(catData);
-        }
-      });
-    } else if (parentClickLikeElement.className === "card__like") {
-      parentClickLikeElement.classList.add("card__like-block--hidden");
-      cats.forEach((catData) => {
-        if (catData.name === NameElement.innerText) {
-          catData.favourite = false;
-          //   console.log(catData);
-        }
-      });
+    if (clickElement.className === "card__like card__like-block--hidden") {
+      clickElement.classList.remove("card__like-block--hidden");
+      const clickElementId =
+        clickElement.parentElement.querySelector(".cat__id").innerText;
+      updateValueObj("favorite", true, clickElementId);
+    } else if (clickElement.className === "card__like") {
+      clickElement.classList.add("card__like-block--hidden");
+      const clickElementId =
+        clickElement.parentElement.querySelector(".cat__id").innerText;
+      updateValueObj("favorite", false, clickElementId);
     }
   });
 }

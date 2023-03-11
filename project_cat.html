@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./img/images.png" type="image/png">
     <link rel="stylesheet" href="./project_cat.css" />
-    <link rel="stylesheet" href="./FAA/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" defer></script>
+    <!-- <link rel="stylesheet" href="./FAA/css/all.min.css" /> -->
     <title>CatsBook</title>
+    <!-- <script src="./FAA/js/all.min.js" defer></script> -->
     <script
       src="https://kit.fontawesome.com/3e2b3d0dcf.js"
       crossorigin="anonymous"
@@ -18,6 +20,7 @@
         <div class="container header__container">
             <a href="#" class="logo"><img  class="logo-img" src="./img/275554901032211.png"> CatsBook</a>
             <button class="btn btn-three" id="add"><i class="fa fa-plus"></i> Добавить нового кота</button>
+            <button class="btn" id="login">Войти</button>
         </div>
     </header>
     <main class="main container">
@@ -53,19 +56,30 @@
               <input type="number" class="form__input" name="rate" placeholder="Рейтинг (0-10)" min="0" max="10">
               <textarea name="description" class="form__input form__textarea" placeholder="Описание"></textarea>
               <label class="form__checkbox-wrap">
-                  <input type="checkbox" name="favourite" class="form__checkbox" placeholder="">
+                  <input type="checkbox" name="favorite" class="form__checkbox" placeholder="">
                   <span class="form__label">Любимчик</span>  
                   <span class="form__fake-checkbox"><i class="fa-regular fa-circle-check"></i></span>
               </label>
-              <input type="url" class="form__input" name="img_link" placeholder="Ссылка на фото">
+              <input type="url" class="form__input" name="image" placeholder="Ссылка на фото">
               <button type="submit" class="form__btn btn">Добавить котика</button>
           </form>
       </div>
   </div>
+  <div class="popup popup-login">
+    <div class="popup__container" >
+        <button class="popup__close btn"><i class="fa-solid fa-xmark"></i></button>
+        <h2>Авторизация</h2>
+        <form class="form" id="popup-form-login">
+            <input type="email" class="form__input" name="email" required placeholder="email">
+            <input type="password" class="form__input" name="password" placeholder="password">
+            <button type="submit" class="form__btn btn">Войти</button>
+        </form>
+    </div>
+</div>
     <template id="card-template">
     <div class="card">
       <button class="card__like" aria-label="Поставить лайк">
-        <i class="fa fa-solid fa-heart fa-2x"></i>
+        <img src="./img/love heart icon_5958163.png" class="heart" alt="иконка сердце"></img>
       </button>
       <div class="cats__box-img">
         <img
@@ -78,39 +92,32 @@
         </button>
       </div>
       <div class="cat__inform">
+        <div class="cat__specification cat__specification-id">Имя:
+          <b class="cat__id specification-text"></b>
+        </div>
         <div class="cat__specification">Имя:
-          <b class="cat__name"></b>
+          <b class="cat__name specification-text"></b>
         </div>
         <div class="cat__specification">Возраст:
-          <b class="cat__age"></b>
+          <b class="cat__age specification-text"></b>
         </div>
         <div class="cat__specification">Рейтинг:
-          <b class="cat__rate"></b>
+          <b class="cat__rate specification-text"></b>
         </div>
         <div class="cat__specification">Описание:
-          <b class="description"></b>
-          <button class="description__button" aria-label="Раскрыть список">
-            <i class="fa fa-circle-chevron-down"></i>
-          </button>
+          <b class="cat_description specification-text"></b>
         </div>
       </div>
+      <div class="button_block">
       <button class="card__delete" aria-label="Удалить">
-        <i class="fa fa-trash-can"></i>
+        <img src="./img/Delete PNG.png" class="delete_basket" alt="иконка корзина"></img>
+      </button>
+      <button class="card__edit" aria-label="Редактировать">
+        <img src="./img/edit profile .png" class="edit_profile" alt="иконка редактирования"></img>
       </button>
     </div>
+    </div>
   </template>
-  <script src="./cats.js" defer></script>
-  <script src="./api.js" defer></script>
-  <script src="./delete-card.js" defer></script>
-  <script src="./card.js" defer></script>
-  <script src="./popup.js" defer></script>
-  <script src="./popup-images.js" defer></script>
-  <script src="./like.js" defer></script>
-  <script src="./delete-card.js" defer></script>
-  <script src="./index.js" defer></script>
-  <script src="./FAA/js/all.min.js" defer></script>
-    
-    
-    
+  <script src="./index.js" type="module" defer></script>
   </body>
 </html>

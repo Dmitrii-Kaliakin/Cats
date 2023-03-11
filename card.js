@@ -1,4 +1,4 @@
-class Card {
+export class Card {
   #data;
   #selectorTemplate;
   #element;
@@ -25,18 +25,23 @@ class Card {
     const catRateElement = this.#element.querySelector(".cat__rate");
     const cardImageElement = this.#element.querySelector(".card__image");
     const cardLikeElement = this.#element.querySelector(".card__like");
+    const catIdElement = this.#element.querySelector(".cat__id");
+    const catDescriptionElement =
+      this.#element.querySelector(".cat_description");
     const btnOpenImage = this.#element.querySelector(".card__zoom");
 
+    catIdElement.textContent = this.#data.id;
     catNameElement.textContent = this.#data.name;
     catAgeElement.textContent = this.#data.age;
     catRateElement.textContent = this.#data.rate;
-    cardImageElement.src = this.#data.img_link;
-    if (!this.#data.favourite) {
+    cardImageElement.src = this.#data.image;
+    catDescriptionElement.textContent = this.#data.description;
+    if (!this.#data.favorite) {
       cardLikeElement.classList.add("card__like-block--hidden");
     }
 
     btnOpenImage.addEventListener("click", () => {
-      this.#handleClickCatImage(this.#data.img_link);
+      this.#handleClickCatImage(this.#data.image);
     });
     return this.#element;
   }

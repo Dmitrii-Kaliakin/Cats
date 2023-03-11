@@ -1,14 +1,27 @@
-// document.addEventListener("mouseup", function (e) {
-//   const parentClickDeleteElements = e.target.parentElement.parentElement;
+import { api } from "./api.js";
+import { Card } from "./card.js";
+import { updateLocalStorage } from "./index.js";
 
-//   const nameDeleteElement =
-//     parentClickDeleteElements.parentElement.querySelector(".card__delete");
+async function deleteValueObj(clickElementId, elementForDelete) {
+  const elementObject = await api.getCatById(Number(clickElementId));
+  await api.deleteCatById(clickElementId);
+  updateLocalStorage(elementObject, { type: "DELETE_CAT" });
+  elementForDelete.remove();
+}
 
-//   const clickDeleteElement =
-//     nameDeleteElement.parentElement.querySelector(".cat__name");
-
-// //   const index = cats.findIndex(
-// //     (item) => item.name === clickDeleteElement.innerText
-// //   );
-// //   cats.splice(index, 1);
-// });
+export function deleteLike() {
+  document.addEventListener("click", function (e) {
+    const clickElement = e.target.parentElement;
+    if (clickElement.className === "card__delete") {
+      const clickElementId =
+        clickElement.parentElement.parentElement.querySelector(
+          ".cat__id"
+        ).innerText;
+      const elementForDelete =
+        clickElement.parentElement.parentElement.parentElement.querySelector(
+          ".card"
+        );
+      deleteValueObj(clickElementId, elementForDelete);
+    }
+  });
+}
